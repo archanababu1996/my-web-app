@@ -4,17 +4,10 @@ phases:
   install:
     runtime-versions:
       java: corretto11
-  build:
-    commands:
-      - ls .
-      - ls $CODEBUILD_SRC_DIR
-      - mvn package
-      - mv target/my-web-app.war my-web-app.war
   post_build:
     commands:
-     - pwd
-     - ls $CODEBUILD_SRC_DIR/target
-     - ls $CODEBUILD_SRC_DIR/.ebextensions
+      - mvn package
+      - mv target/my-web-app.war my-web-app.war
 artifacts:
   files:
     - my-web-app.war
